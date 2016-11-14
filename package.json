@@ -1,0 +1,26 @@
+{
+  "name": "smurl",
+  "version": "1.0.0",
+  "description": "FCC URL Shortener Microservice",
+  "main": "smurl.js",
+  "scripts": {
+    "test": "node smurl.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jnelson180/smurl-fcc.git"
+  },
+  "keywords": [
+    "URL",
+    "Shortener"
+  ],
+  "author": "Jake Nelson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jnelson180/smurl-fcc/issues"
+  },
+  "homepage": "https://github.com/jnelson180/smurl-fcc#readme",
+  "dependencies": {
+    "mongodb": "^2.2.11"
+  }
+}
