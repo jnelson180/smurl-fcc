@@ -34,7 +34,7 @@ MongoClient.connect(dbUrl, function(err, db) {
                 short_url: "https://smurl-app.herokuapp.com/" + reqUrl
             }).toArray(function(err, docs) {
                 if (err) {
-                    res.send("Invalid URL");
+                    res.send(JSON.stringify({error:"An internal error has occurred."}));
                     throw err;
                     return;
                 }
@@ -50,7 +50,7 @@ MongoClient.connect(dbUrl, function(err, db) {
                 // otherwise output "Invalid URL" to page
                 else if (docs[docs.length - 1] == undefined) {
                     console.log("Invalid short URL requested.");
-                    res.send("Invalid URL");
+                    res.send(JSON.stringify({error:"This URL is not in the database."}));
                 }
             });
         }
