@@ -15,15 +15,6 @@ MongoClient.connect(dbUrl, function(err, db) {
     if (err) throw err;
     console.log("Connected successfully to server");
 
-    // Print 'documents' db to console
-    function showDB() {
-        var collection = db.collection('documents');
-        collection.find({}).toArray(function(err, docs) {
-            if (err) throw err;
-            console.log(docs);
-        });
-    }
-
     // Show home page
     app.get('/', function(req, res) {
         console.log("Visitor to home page.");
