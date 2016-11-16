@@ -40,7 +40,7 @@ MongoClient.connect(dbUrl, function(err, db) {
         // if URL is a number, check against short_urls
         if (reqUrl * 1 > 0) {
             collection.find({
-                short_url: "http://localhost:8080/" + reqUrl
+                short_url: "https://smurl-app.herokuapp.com/" + reqUrl
             }).toArray(function(err, docs) {
                 if (err) {
                     res.send("Invalid URL");
@@ -104,7 +104,7 @@ MongoClient.connect(dbUrl, function(err, db) {
 // generate short URL token
 function getShortUrl() {
     var token = String(Date.now()).slice(-4) + (Math.floor(Math.random() * 999) + 1);
-    var smurl = "http://localhost:8080/" + token;
+    var smurl = "https://smurl-app.herokuapp.com/" + token;
     console.log(smurl);
     return smurl;
 }
@@ -133,5 +133,5 @@ function redir(url) {
 }
 
 app.listen(port, function() {
-    console.log('URL Shortener Microservice listening on port 8080');
+    console.log('URL Shortener Microservice listening at https://smurl-app.herokuapp.com');
 });
