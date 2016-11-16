@@ -5,6 +5,16 @@ var MongoClient = mongodb.MongoClient;
 var dbUrl = process.env.MONGOLAB_URI;
 var port = process.env.PORT || 8080;
 
+/* TO DO -----------------------------------------------------
+
+1. User Story: If I pass an invalid URL that doesn't follow 
+the valid http://www.example.com format, the JSON response 
+will contain an error instead.
+
+2. Fix Social Media Buttons sidebar
+
+*/
+
 app.set('view engine', 'ejs');
 
 // make express look in public dir for assets (css/js/img/etc)
