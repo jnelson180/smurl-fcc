@@ -2,7 +2,8 @@ var express = require('express');
 var app = express();
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var dbUrl = 'mongodb://localhost:27017/smurl';
+var dbUrl = process.env.MONGOLAB_URI;
+var port = process.env.PORT || 8080;
 
 app.set('view engine', 'ejs');
 
@@ -131,16 +132,6 @@ function redir(url) {
     }
 }
 
-// FOR LOCAL TESTING
-
-app.listen("8080", function() {
+app.listen(port, function() {
     console.log('URL Shortener Microservice listening on port 8080');
 });
-
-
-// FOR HEROKU PROD  
-/*
-app.listen(process.env.PORT, function () {
-  console.log('URL Shortener Microservice listening on port ' + process.env.PORT);
-});
-*/
