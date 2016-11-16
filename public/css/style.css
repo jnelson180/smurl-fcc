@@ -1,4 +1,4 @@
-﻿body    { padding-top:50px; }
+﻿body    { padding-top:20px; }
 .container { border-radius:40px; }
 .example { color: #c40b21}
 a:link {
@@ -7,4 +7,52 @@ a:link {
 
 a:visited {
     text-decoration: none;
+}
+.sideButtons {
+  max-width: 42px;
+  height: 30px;
+  font-size: 18px;
+  position: fixed;
+  bottom: 50%;
+  right: 0%;
+}
+
+#tpill {
+  background-color: #4099FF;
+  color: #FFFFFF;
+  font-family: webdings;
+  text-indent: -1px;
+}
+
+#tpill:hover {
+  font-weight: bold;
+  text-shadow: 0px 1px 5px;
+  border-width: 1px;
+  border-color: #999999;
+}
+
+#gpill {
+  background-color: #1d1d1d;
+  color: #FFFFFF;
+  text-indent: -1px;
+}
+
+#gpill:hover {
+  font-weight: bold;
+  text-shadow: 0px 1px 5px;
+  border-width: 1px;
+  border-color: #999999;
+}
+
+#lpill {
+  background-color: #007bb6;
+  color: #FFFFFF;
+  text-indent: -1px;
+}
+
+#lpill:hover {
+  font-weight: bold;
+  text-shadow: 0px 1px 5px;
+  border-width: 1px;
+  border-color: #999999;
 }

@@ -7,7 +7,7 @@ var dbUrl = 'mongodb://localhost:27017/smurl';
 app.set('view engine', 'ejs');
 
 // make express look in public dir for assets (css/js/img/etc)
-app.use(express.static(__dirname + '/views'))
+app.use(express.static(__dirname + '/public'))
 
 // connect to MongoDB
 MongoClient.connect(dbUrl, function(err, db) {
@@ -24,10 +24,11 @@ MongoClient.connect(dbUrl, function(err, db) {
     }
 
     // Show home page
-app.get('/', function(req, res) {
-  console.log("Visitor to home page.");
-  res.render('index');
-});
+    app.get('/', function(req, res) {
+        console.log("Visitor to home page.");
+        res.render('index');
+        res.end();
+    });
 
     // Send req through URL parser
     app.get('/*', function(req, res) {
