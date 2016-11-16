@@ -2,12 +2,16 @@ var express = require('express');
 var app = express();
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-// var assert = require('assert');
 var dbUrl = 'mongodb://localhost:27017/smurl';
+
+app.set('view engine', 'ejs');
+
+// make express look in public dir for assets (css/js/img/etc)
+app.use(express.static(__dirname + '/views'))
 
 // connect to MongoDB
 MongoClient.connect(dbUrl, function(err, db) {
-    // assert.equal(null, err);
+    if (err) throw err;
     console.log("Connected successfully to server");
 
     // Print 'documents' db to console
@@ -18,19 +22,18 @@ MongoClient.connect(dbUrl, function(err, db) {
             console.log(docs);
         });
     }
-    showDB();
 
     // Show home page
-    app.get('/', function(req, res) {
-        console.log("Visitor to home page.");
-        res.end("Welcome to the home page! \n\nTo use the shortener, go to '(base URL)/yourfullURLhere'");
-    });
+app.get('/', function(req, res) {
+  console.log("Visitor to home page.");
+  res.render('index');
+});
 
     // Send req through URL parser
     app.get('/*', function(req, res) {
         var reqUrl = req.url.substr(1);
-        console.log('reqUrl is ' + reqUrl * 1);
         var collection = db.collection('documents');
+        console.log("Incoming request to " + req.url);
 
         // if URL is a number, check against short_urls
         if (reqUrl * 1 > 0) {
@@ -38,7 +41,6 @@ MongoClient.connect(dbUrl, function(err, db) {
                 short_url: "http://localhost:8080/" + reqUrl
             }).toArray(function(err, docs) {
                 if (err) {
-                    console.log("Err");
                     res.send("Invalid URL");
                     throw err;
                     return;
@@ -54,7 +56,7 @@ MongoClient.connect(dbUrl, function(err, db) {
 
                 // otherwise output "Invalid URL" to page
                 else if (docs[docs.length - 1] == undefined) {
-                    console.log("Err");
+                    console.log("Invalid short URL requested.");
                     res.send("Invalid URL");
                 }
             });
@@ -67,7 +69,10 @@ MongoClient.connect(dbUrl, function(err, db) {
             }).toArray(function(err, docs) {
                 if (err) throw err;
                 if (docs[docs.length - 1] != undefined) {
-                    console.log("Found a record for requested URL.");
+                    console.log(JSON.stringify({
+                        original_url: docs[docs.length - 1].original_url,
+                        short_url: docs[docs.length - 1].short_url
+                    }));
                     res.send(JSON.stringify({
                         original_url: docs[docs.length - 1].original_url,
                         short_url: docs[docs.length - 1].short_url

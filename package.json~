@@ -4,7 +4,7 @@
   "description": "FCC URL Shortener Microservice",
   "main": "smurl.js",
   "scripts": {
-    "start": "node smurl.js"
+    "test": "node smurl.js"
   },
   "repository": {
     "type": "git",
@@ -12,8 +12,7 @@
   },
   "keywords": [
     "URL",
-    "Shortener",
-    "microservice"
+    "Shortener"
   ],
   "author": "Jake Nelson",
   "license": "ISC",

@@ -1,0 +1,10 @@
+﻿body    { padding-top:50px; }
+.container { border-radius:40px; }
+.example { color: #c40b21}
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
