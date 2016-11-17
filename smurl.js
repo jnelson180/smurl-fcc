@@ -4,14 +4,13 @@ var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var dbUrl = process.env.MONGOLAB_URI;
 var port = process.env.PORT || 8080;
+var validUrl = require('valid-url');
 
 /* TO DO -----------------------------------------------------
 
 1. User Story: If I pass an invalid URL that doesn't follow 
 the valid http://www.example.com format, the JSON response 
 will contain an error instead.
-
-2. Fix Social Media Buttons sidebar
 
 */
 
@@ -83,6 +82,7 @@ MongoClient.connect(dbUrl, function(err, db) {
                 }
                 // otherwise shorten req URL
                 else {
+                  if (isValudUrl(req.url.substr(1))) {
                     console.log("Request to shorten '" + reqUrl + "'");
                     collection.insert([{
                         original_url: reqUrl,
@@ -95,11 +95,25 @@ MongoClient.connect(dbUrl, function(err, db) {
                         }));
                     });
                 }
+                else {
+                  console.log("Invalid URL format requested.");
+                  res.send(JSON.stringify({error:"Invalid URL format. Please use format 'http://www.example.com' or 'https://www.example.com'."}));
+                }
+              }
             });
         }
 
     });
 });
+
+// validate URL
+function isValidUrl(urlToCheck) {
+    if (validUrl.isWebUri(urlToCheck)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 // generate short URL token
