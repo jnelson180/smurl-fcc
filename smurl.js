@@ -82,7 +82,7 @@ MongoClient.connect(dbUrl, function(err, db) {
                 }
                 // otherwise shorten req URL
                 else {
-                  if (isValudUrl(req.url.substr(1))) {
+                  if (isValidUrl(req.url.substr(1))) {
                     console.log("Request to shorten '" + reqUrl + "'");
                     collection.insert([{
                         original_url: reqUrl,
