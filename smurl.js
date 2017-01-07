@@ -5,7 +5,7 @@ var MongoClient = mongodb.MongoClient;
 var dbUrl = process.env.MONGOLAB_URI;
 var port = process.env.PORT || 8080;
 var validUrl = require('valid-url');
-
+var path = require('path');
 /* TO DO -----------------------------------------------------
 
 1. User Story: If I pass an invalid URL that doesn't follow 
