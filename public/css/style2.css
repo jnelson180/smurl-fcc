@@ -11,6 +11,10 @@ p {
   color: #E71D36 !important;
 }
 
+ul, li {
+  color: #3DDC97 !important;
+}
+
 
 .container { 
   border-radius: 40px; 
