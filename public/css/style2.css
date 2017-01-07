@@ -1,5 +1,3 @@
-/* new stuff */ 
-
 body {
   background-color: #010001 !important;
   padding-top: 20px !important;
@@ -8,7 +6,7 @@ body {
 h1, h2, p {
   color: #FDFFFC !important;
 }
-/* end new stuff */
+
 
 .container { 
   border-radius: 40px; 
