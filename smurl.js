@@ -17,7 +17,7 @@ will contain an error instead.
 app.set('view engine', 'ejs');
 
 // make express look in public dir for assets (css/js/img/etc)
-app.use(express.static(__dirname + '/public'))
+  app.use(express.static(path.join(__dirname, 'public')));
 
 // connect to MongoDB
 MongoClient.connect(dbUrl, function(err, db) {
